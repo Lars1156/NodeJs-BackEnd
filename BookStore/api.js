@@ -7,3 +7,5 @@ const userController = require('./controller/userController');
 
 router.post('/rgister ' , userController.register);
 router.post('login', userController.login);
+
+module.exports = router;
