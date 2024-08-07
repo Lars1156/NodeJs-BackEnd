@@ -5,7 +5,7 @@ const { connection } = require('./connection');
 const app = express();
 
 // Database Coonectivty
-connection('').then(()=>{
+connection('mongodb://localhost:27017/BookShop').then(()=>{
     console.log("Database Connected SucesssFully");   
 }).catch((error)=>{
     console.log("Database is not connected", error);   
