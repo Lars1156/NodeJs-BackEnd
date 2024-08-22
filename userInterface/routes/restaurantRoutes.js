@@ -1,22 +1,11 @@
 const express = require('express');
 const restaurantController = require('../controller/restaurantController');
-const { protect, admin } = require('../middleware/authMiddleware');
+const { protect, admin } = require('../middlewre/auth');
 
 const router = express.Router();
 
-// Create a restaurant (admin only)
-router.post('/', protect, admin, restaurantController.createRestaurant);
+router.post('/createReast' , protect, admin ,restaurantController.createRestaurant);
+router.get('/getAllrest', protect, admin, restaurantController.getAllRestaurants);
 
-// Get all restaurants
-router.get('/', restaurantController.getAllRestaurants);
-
-// Get a restaurant by ID
-router.get('/:id', restaurantController.getRestaurantById);
-
-// Update a restaurant (admin only)
-router.put('/:id', protect, admin, restaurantController.updateRestaurant);
-
-// Delete a restaurant (admin only)
-router.delete('/:id', protect, admin, restaurantController.deleteRestaurant);
 
 module.exports = router;
