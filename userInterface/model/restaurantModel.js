@@ -21,21 +21,21 @@ const restaurantSchema = new mongoose.Schema({
     lowercase: true,
     match: [/.+\@.+\..+/, 'Please provide a valid email address'],
   },
-  menu: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'MenuItem',
-    },
-  ],
+//   menu: [
+//     {
+//       type: mongoose.Schema.Types.ObjectId,
+//       ref: 'MenuItem',
+//     },
+//   ],
   status: {
     type: String,
     enum: ['open', 'closed'],
     default: 'open',
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
 });
 
 module.exports = mongoose.model('Restaurant', restaurantSchema);
