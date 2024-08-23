@@ -37,3 +37,25 @@ exports.createMenuItem = async (menuData) => {
     return menuItem;
   };
   
+  exports.deleteMenuItem = async (menuItemId) => {
+    const menuItem = await Menu.findByIdAndDelete(menuItemId);
+    if (!menuItem) {
+      throw new Error('Menu item not found.');
+    }
+    return menuItem;
+  };
+
+  exports.approveMenuItem = async (menuItemId, status) => {
+    const menuItem = await Menu.findById(menuItemId);
+    if (!menuItem) {
+      throw new Error('Menu item not found.');
+    }
+  
+    if (!['approved', 'rejected'].includes(status)) {
+      throw new Error('Invalid status. Use "approved" or "rejected".');
+    }
+  
+    menuItem.status = status;
+    await menuItem.save();
+    return menuItem;
+  };
