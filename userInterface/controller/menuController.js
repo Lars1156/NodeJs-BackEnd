@@ -36,3 +36,22 @@ exports.createMenuItem = async (req, res) => {
     }
   };
   
+
+  exports.deleteMenuItem = async (req, res) => {
+    try {
+      await menuService.deleteMenuItem(req.params.id);
+      res.status(200).json({ success: true, message: 'Menu item deleted successfully' });
+    } catch (error) {
+      res.status(404).json({ success: false, message: error.message });
+    }
+  };
+
+  exports.approveMenuItem = async (req, res) => {
+    try {
+      const { status } = req.body;
+      const menuItem = await menuService.approveMenuItem(req.params.id, status);
+      res.status(200).json({ success: true, menuItem });
+    } catch (error) {
+      res.status(400).json({ success: false, message: error.message });
+    }
+  };
